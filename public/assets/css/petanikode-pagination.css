@@ -1,0 +1,52 @@
+/* Petani Kode Pagination Styles */
+.pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.25rem;
+}
+/* Ensure wrapper aligns left */
+.pagination-wrapper { text-align: left; }
+.page-item { display: flex; }
+.page-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.6rem;
+  text-decoration: none;
+  color: #007cba;
+  background-color: #fff;
+  border: 1px solid #d0d7de;
+  border-radius: 0.25rem;
+  transition: all 0.15s ease-in-out;
+  min-width: 10px;
+  height: 20px;
+  font-size: 0.95rem;
+}
+.page-link:hover {
+  color: #0056b3;
+  background-color: #e9ecef;
+  border-color: #adb5bd;
+  text-decoration: none;
+}
+.page-item.active .page-link {
+  color: #fff;
+  background-color: #007cba;
+  border-color: #007cba;
+}
+.page-item.active .page-link:hover {
+  color: #fff;
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+@media (max-width: 576px) {
+  .page-link {
+    padding: 0.3rem 0.45rem;
+    font-size: 0.85rem;
+    min-width: 30px;
+    height: 30px;
+  }
+}
