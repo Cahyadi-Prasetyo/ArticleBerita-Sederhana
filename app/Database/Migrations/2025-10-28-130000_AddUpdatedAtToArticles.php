@@ -8,31 +8,26 @@ class AddUpdatedAtToArticles extends Migration
 {
     public function up()
     {
-        // Check if column already exists
-        if ($this->db->fieldExists('updated_at', 'articles')) {
-            echo "Column 'updated_at' already exists in 'articles' table. Skipping.\n";
-            return;
-        }
-
         // Add updated_at column to articles table
-        $this->forge->addColumn('articles', [
+        $fields = [
             'updated_at' => [
                 'type'    => 'DATETIME',
                 'null'    => true,
                 'default' => null,
                 'after'   => 'created_at'
-            ]
-        ]);
-
-        echo "Added 'updated_at' column to 'articles' table successfully.\n";
+            ],
+        ];
+        
+        $this->forge->addColumn('articles', $fields);
+        
+        echo "Added 'updated_at' column to articles table.\n";
     }
 
     public function down()
     {
         // Remove updated_at column
-        if ($this->db->fieldExists('updated_at', 'articles')) {
-            $this->forge->dropColumn('articles', 'updated_at');
-            echo "Removed 'updated_at' column from 'articles' table.\n";
-        }
+        $this->forge->dropColumn('articles', 'updated_at');
+        
+        echo "Removed 'updated_at' column from articles table.\n";
     }
 }
