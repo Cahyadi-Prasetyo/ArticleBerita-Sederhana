@@ -131,12 +131,6 @@ php spark db:seed FeedbackSeeder
 php spark db:seed DatabaseSeeder
 ```
 
-### Default User Credentials
-
-**Admin Account:**
-- Username: `admin`
-- Password: `admin123`
-
 ## 📁 Struktur Project
 
 ```
