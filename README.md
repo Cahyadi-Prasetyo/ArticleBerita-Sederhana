@@ -76,30 +76,37 @@ composer install
 
 ### 3. Setup Environment
 
+> **⚠️ SECURITY WARNING**: NEVER commit `.env` file to version control!
+
 ```bash
-cp env .env
+# Copy from example template
+cp .env.example .env
 ```
 
-Edit file `.env`:
+Edit file `.env` with your actual credentials:
 
 ```env
 CI_ENVIRONMENT = development
 
 database.default.hostname = localhost
 database.default.database = myprojek
-database.default.username = root
-database.default.password = 
+database.default.username = your_username
+database.default.password = your_secure_password
 database.default.DBDriver = MySQLi
 database.default.port = 3306
 
-encryption.key = your-encryption-key-here
+# Will be generated in next step
+encryption.key = 
 ```
 
 ### 4. Generate Encryption Key
 
 ```bash
+# This will automatically update .env with a secure key
 php spark key:generate
 ```
+
+> **🔒 IMPORTANT**: Keep your `.env` file secure and never share it publicly!
 
 ## 💾 Database Setup
 
@@ -255,6 +262,50 @@ http://localhost/my-project/login
 http://localhost/my-project/admin/dashboard
 ```
 
+## � DSecurity
+
+### Important Security Notes
+
+> **⚠️ CRITICAL**: This project had a security incident where `.env` file was accidentally committed. If you cloned this repository, please:
+
+1. **NEVER use the exposed encryption key**
+2. **Generate a NEW encryption key**: `php spark key:generate`
+3. **Use STRONG database passwords**
+4. **Review** [SECURITY_FIX.md](SECURITY_FIX.md) for details
+
+### Security Best Practices
+
+1. **Environment Files**
+   - ✅ `.env` is in `.gitignore`
+   - ✅ Use `.env.example` for templates
+   - ❌ NEVER commit `.env` to git
+   - ❌ NEVER share `.env` publicly
+
+2. **Credentials Management**
+   - Generate unique encryption keys per environment
+   - Use strong passwords (min 12 characters)
+   - Rotate credentials regularly
+   - Use environment variables in production
+
+3. **Code Security**
+   - Validate all user inputs
+   - Use prepared statements (Query Builder)
+   - Escape output data
+   - Enable CSRF protection
+   - Keep dependencies updated
+
+### Security Checklist
+
+Before deploying:
+- [ ] New encryption key generated
+- [ ] Strong database password set
+- [ ] `.env` not in git history
+- [ ] HTTPS enabled
+- [ ] Security headers configured
+- [ ] Error reporting disabled in production
+- [ ] File upload validation enabled
+- [ ] Rate limiting configured
+
 ## 🚢 Deployment
 
 ### Production Checklist
@@ -265,10 +316,12 @@ http://localhost/my-project/admin/dashboard
    ```
 
 2. **Security**
-   - Generate new encryption key
-   - Update database credentials
-   - Enable HTTPS
-   - Set secure session cookies
+   - ✅ Generate NEW encryption key (NEVER use development key!)
+   - ✅ Update database credentials with strong passwords
+   - ✅ Enable HTTPS
+   - ✅ Set secure session cookies
+   - ✅ Disable error display
+   - ✅ Enable security headers
 
 3. **Performance**
    - Enable caching
@@ -280,6 +333,7 @@ http://localhost/my-project/admin/dashboard
    - Run migrations
    - Backup database
    - Set proper user permissions
+   - Use separate database user with limited privileges
 
 ## 📝 License
 
