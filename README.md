@@ -136,12 +136,6 @@ php spark db:seed DatabaseSeeder
 **Admin Account:**
 - Username: `admin`
 - Password: `admin123`
-- Email: `admin@myprojek.com`
-
-**Demo Account:**
-- Username: `demo`
-- Password: `demo123`
-- Email: `demo@myprojek.com`
 
 ## 📁 Struktur Project
 
